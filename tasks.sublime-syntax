@@ -1,0 +1,33 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+name: Tasks
+file_extensions: [tasks]
+scope: source.tasks
+
+contexts:
+  main:
+    - match: '^\s*\+'
+      scope: tasks.completed
+      push: task_completed
+    - match: '^\s*x'
+      scope: tasks.cancelled
+      push: task_cancelled
+    - match: '^\s*/'
+      scope: tasks.comment
+      push: task_comment
+
+  task_completed:
+    - meta_scope: markup.inserted
+    - match: $
+      pop: true
+
+  task_cancelled:
+    - meta_scope: markup.deleted
+    - match: $
+      pop: true
+
+  task_comment:
+    - meta_scope: markup.changed
+    - match: $
+      pop: true
