@@ -1,4 +1,3 @@
-# SublimeTask
 
 ![demo](res/demo.gif)
 
